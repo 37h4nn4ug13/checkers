@@ -27,4 +27,4 @@ void Checker::crown() {
 
 char Checker::getSymbol() {
     return Checker::symbol;
-}
+} 
