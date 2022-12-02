@@ -4,7 +4,6 @@ Board::Board(int size) {
     Board::size = size;
     Checker x = Checker(1);
     Checker y = Checker(2);
-    Checker blank = Checker(0);
     Board::spaces.resize(size*size, Checker(0));
 
     for (int i = 0; i < size; i++) {
