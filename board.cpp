@@ -26,11 +26,36 @@ Board::Board(int size) {
     }
 }
 
-void Board::printBoard() {
+void Board::printBoard() {\
     for (int i = 0; i < Board::size; i++) {
+        
         for (int j = 0; j < Board::size; j++) {
-            std::cout << Board::spaces.at(size*i+j).getSymbol();
+            std::cout << "┏━━━┓";
+        }
+        std::cout << std::endl;
+        for (int j = 0; j < Board::size; j++) {
+            std::cout << "┃ " << Board::spaces.at(size*i+j).getSymbol() << " ┃";
+        }
+        std::cout << std::endl;
+        for (int j = 0; j < Board::size; j++) {
+            std::cout << "┗━━━┛";
         }
         std::cout << std::endl;
     }
 }
+
+/*
+Box drawing
+
+┏━━━┓
+┃ x ┃
+┗━━━┛
+┏━━━┓
+┃ x ┃
+┗━━━┛
+
+
+
+
+
+*/
