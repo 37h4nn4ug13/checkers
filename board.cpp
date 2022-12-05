@@ -1,6 +1,6 @@
 #include "board.h" 
 
-Board::Board(int size) {
+Board::Board(const int &size) {
     Board::size = size;
     Checker x = Checker(1);
     Checker y = Checker(2);
@@ -42,6 +42,35 @@ void Board::printBoard() {\
         std::cout << std::endl;
     }
 }
+bool Board::move(const int &start, const int &end, const char &player) { // Will return false if move is invalid. 
+    // Check is start is valid
+    if (start % 2 == 0) {
+        return false;
+    }
+    
+    // Check if end is valid
+    if (end % 2 == 0) {
+        return false;
+    }
+
+    // Check if user can move the piece
+    if (Board::spaces.at(start).getSymbol() != player) {
+        return false;
+    }
+
+    // Check if move is back and only let move happen if the piece is crowned
+
+
+    // Check for pieces jumped. 
+
+        // make sure pieces being jumped are not the players pieces
+    
+    // Check for doubles
+
+    Board::spaces.at(end) = Board::spaces.at(start);
+    Board::spaces.at(start) = Checker(0);
+    return true;
+}
 
 /*
 Box drawing
@@ -52,9 +81,4 @@ Box drawing
 ┏━━━┓
 ┃ x ┃
 ┗━━━┛
-
-
-
-
-
 */

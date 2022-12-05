@@ -10,7 +10,8 @@ class Board {
     std::vector<Checker> spaces;
 
   public: 
-    Board(int size);
+    Board(const int &size);
+    bool move(const int &start, const int &end, const char &player);
     void reset();
     void printBoard();
     

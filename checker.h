@@ -6,6 +6,7 @@ class Checker {
     char symbol;
     bool isCrowned;
   public: 
+    Checker();
     Checker(int value);
     Checker(const Checker& cker);
     void crown();

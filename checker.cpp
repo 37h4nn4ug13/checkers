@@ -1,6 +1,9 @@
 #include "checker.h"
 #include <iostream> 
 
+Checker::Checker() {
+    
+}
 Checker::Checker(int value) {
     Checker::isCrowned = false;
     if (value == 1) {
