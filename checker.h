@@ -11,6 +11,7 @@ class Checker {
     Checker(const Checker& cker);
     void crown();
     char getSymbol();
+    bool checkIsCrowned();
 
 };
 

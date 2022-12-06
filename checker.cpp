@@ -31,3 +31,6 @@ void Checker::crown() {
 char Checker::getSymbol() {
     return Checker::symbol;
 } 
+bool Checker::checkIsCrowned() {
+    return Checker::isCrowned;
+}

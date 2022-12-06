@@ -25,7 +25,7 @@ Board::Board(const int &size) {
     }
 }
 
-void Board::printBoard() {\
+void Board::printBoard() {
     for (int i = 0; i < Board::size; i++) {
         
         for (int j = 0; j < Board::size; j++) {
@@ -33,7 +33,8 @@ void Board::printBoard() {\
         }
         std::cout << std::endl;
         for (int j = 0; j < Board::size; j++) {
-            std::cout << "┃ " << Board::spaces.at(size*i+j).getSymbol() << " ┃";
+            // std::cout << "┃ \033[0;31m" << Board::spaces.at(size*i+j).getSymbol() << "\033[0m ┃";
+            std::cout << "┃ \033[1;3" << (char)((Board::spaces.at(size*i+j).getSymbol() == 'X') + '1') << "m" << Board::spaces.at(size*i+j).getSymbol() << "\033[0m ┃";
         }
         std::cout << std::endl;
         for (int j = 0; j < Board::size; j++) {
@@ -41,20 +42,36 @@ void Board::printBoard() {\
         }
         std::cout << std::endl;
     }
+    
 }
 bool Board::move(const int &start, const int &end, const char &player) { // Will return false if move is invalid. 
     // Check is start is valid
-    if (start % 2 == 0) {
+    if (((start / Board::size)%2==0 && start % 2 == 1) || ((start / Board::size) % 2 == 1 && start % 2 == 0)) {
         return false;
     }
     
     // Check if end is valid
-    if (end % 2 == 0) {
+    if (((end / Board::size)%2==0 && end % 2 == 1) || ((end / Board::size) % 2 == 1 && end % 2 == 0)) {
         return false;
     }
 
     // Check if user can move the piece
     if (Board::spaces.at(start).getSymbol() != player) {
+        return false;
+    }
+
+    if (player == 'X') {
+
+        if (end < start && Board::spaces.at(start).checkIsCrowned()) {
+            std::cout << std::endl;
+        }
+
+    }
+    else if (player == 'O') {
+
+    } 
+    else {
+        std::cerr << "Invalid function input. Player value of " << player <<  " is invalid. " << std::endl;
         return false;
     }
 
