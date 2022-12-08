@@ -101,14 +101,92 @@ bool Board::move(const int &start, const int &end, const char &player) { // Will
         ((end == start + Board::size + 1 || end == start + Board::size - 1) || (start == end + Board::size + 1 || start == end + Board::size - 1)) ||
         ((end == start + 2 * Board::size + 2 || end == start + 2 * Board::size - 2) || (start == end + 2 * Board::size + 2 || start == end + 2 * Board::size - 2))
         ) { 
-            if (((end - start) > Board::size + 1) || ((start - end) > Board::size + 1)) {
-                // Condition for checking if there is a checker of the opposite player between start and end;
+        
+            if (((end - start) > Board::size + 1) ) {
+                // Condition for checking if there is a checker of the opposite player between start and end; (This is for X)
+                if ((end - start) < 2 * Board::size) { // It is on the left of the board
+                    if (Board::spaces.at(start + Board::size - 1).getSymbol() != player || Board::spaces.at(start + Board::size - 1).getSymbol() != Checker(0)) {
+                        Board::spaces.at(start + Board::size - 1) = Checker(0);
+                        std::cout << player << std::endl;
+                        Board::spaces.at(end) = Board::spaces.at(start);
+                        Board::spaces.at(start) = Checker(0);
+                        if (end > 55 || end < 8) {
+                            Board::spaces.at(end).crown();
+                        }
+                        return true;
+
+                    }
+                    else {
+                        return false;
+                    }
+                }
+                else if ((end - start) > 2 * Board::size) { // This is the right side
+                    if (Board::spaces.at(start + Board::size + 1).getSymbol() == 'O') {
+                        Board::spaces.at(start + Board::size + 1) = Checker(0);
+                        std::cout << player << std::endl;
+                        Board::spaces.at(end) = Board::spaces.at(start);
+                        Board::spaces.at(start) = Checker(0);
+                        if (end > 55 || end < 8) {
+                            Board::spaces.at(end).crown();
+                        }
+                        return true;
+
+                    }
+                    else {
+                        return false;
+                    }
+                }
                 
             }
+
+            if (((start - end) > Board::size + 1)) { // This is the same but for O
+            std::cout << "I made it to check point 1" << std::endl;
+                if ((start - end) < 2 * Board::size) { // It is on the right of the board
+                std::cout << "I made it to check point 2" << std::endl;
+                    if (Board::spaces.at(start - Board::size + 1).getSymbol() == 'X') {
+                        std::cout << "I made it to check point 3" << std::endl;
+                        Board::spaces.at(start - Board::size + 1) = Checker(0);
+                        std::cout << player << std::endl;
+                        Board::spaces.at(end) = Board::spaces.at(start);
+                        Board::spaces.at(start) = Checker(0);
+                        if (end > 55 || end < 8) {
+                            Board::spaces.at(end).crown();
+                        }
+                        return true;
+
+                    }
+                    else {
+                        return false;
+                    }
+                }
+                else if ((start - end) > 2 * Board::size) { // This is the left side
+                std::cout << "I made it here check point 2" << std::endl;
+                    if (Board::spaces.at(start - Board::size - 1).getSymbol() == 'X') {
+                        std::cout << "I made it here checkpoint 3" << std::endl;
+                        Board::spaces.at(start - Board::size - 1) = Checker(0);
+                        std::cout << player << std::endl;
+                        Board::spaces.at(end) = Board::spaces.at(start);
+                        Board::spaces.at(start) = Checker(0);
+                        if (end > 55 || end < 8) {
+                            Board::spaces.at(end).crown();
+                        }
+                        return true;
+
+                    }
+                    else {
+                        return false;
+                    }
+                }
+            }
+            
         // only allows pieces the move as far as they should. This also needs the jump logic. 
+        
         std::cout << player << std::endl;
         Board::spaces.at(end) = Board::spaces.at(start);
         Board::spaces.at(start) = Checker(0);
+        if (end > 55 || end < 8) {
+            Board::spaces.at(end).crown();
+        }
         return true;
     }
     return false;

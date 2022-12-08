@@ -18,8 +18,13 @@ int main() {
         else {
             player = 'O';
         }
-        cout << "Player " << player << ", Enter a start index: ";
+        cout << "Player " << player << ", Enter a start index (or 64 to giveup): ";
             cin >> start;
+            if (start == 64) {
+                player == 'X' ? cout << "O wins" : cout << "X wins" ;
+                cout << endl;
+                return 0; 
+            }
             cout << "Now enter an end index: ";
             cin >> end;
         while (!isValid) {
